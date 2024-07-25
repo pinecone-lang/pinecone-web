@@ -1,0 +1,164 @@
+@use "sass:math";
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+$anim-time: 0.2s;
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.animation-fadeIn {
+    animation: fadeIn $anim-time;
+}
+
+.animation-fadeOut {
+    animation: fadeOut $anim-time;
+}
+
+* {
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
+a {
+    color: #3a75c7;
+    text-decoration: underline;
+    transition: $anim-time color;
+    &:hover { color: #5095d9; }
+}
+
+nav {
+    $padding: 25px;
+
+    height: 50px;
+    width: calc(100% - $padding * 2);
+    padding: 0 $padding 0 $padding;
+    display: flex;
+    align-items: center;
+
+    * {
+        margin-right: 25px;
+        font-size: 16px;
+        &:last-child { margin-right: 0; }
+    }
+
+    .title {
+        font-weight: 800;
+        &:hover { color: #000 !important; }
+    }
+    
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+}
+
+header {
+    background-color: #447246;
+    height: 400px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .block {
+        color: #fff;
+        text-align: center;
+
+        .title {
+            font-weight: 800;
+            font-size: 32px;
+        }
+
+        .description {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@mixin btn() {
+    border-radius: 6px;
+    padding: 6px 12px;
+    outline: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-flat-primary {
+    @include btn;
+
+    border: none;
+    background-color: #fff;
+    color: #000;
+    font-weight: 800;
+
+    transition: $anim-time background-color;
+    &:hover { background-color: #bebebe; }
+}
+
+.btn-flat-secondary {
+    @include btn;
+
+    border: 1px solid rgba(#000, 0.1);
+    background-color: transparent;
+    color: #fff;
+
+    transition: $anim-time background-color, $anim-time border;
+    &:hover { border: 1px solid rgba(#000, 0.2); }
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(#000, 0.5);
+    height: 100svh;
+    width: 100svw;
+
+    .window {
+        $padding: 25px;
+        
+        padding: $padding;
+        background-color: #fff;
+        position: absolute;
+        top: 50svh;
+        left: 50svw;
+        transform: translate(-50%, -50%);
+        width: 600px;
+
+        .close {
+            position: absolute;
+            right: $padding;
+            padding: 2px 8px;
+        }
+
+        .title {
+            font-weight: 800;
+            font-size: 22px;
+            margin-bottom: 10px;
+            &:last-child { margin-bottom: 0; }
+        }
+
+        .description {
+            font-size: 14px;
+            margin-bottom: 10px;
+            &:last-child { margin-bottom: 0; }
+        }
+    }
+}
+
+.btn-modal {
+    @include btn;
+    border: 1px solid rgba(#000, 0.2);
+    background: linear-gradient(180deg, #fff 25%, rgba(#000, 0.05) 100%);
+    font-weight: 500;
+    &:hover { background: linear-gradient(180deg, #fff 0%, rgba(#000, 0.05) 100%); }
+}
